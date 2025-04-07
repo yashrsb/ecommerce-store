@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 const products = [];
 const users = {};
 const orders = [];
-const discounts = [];
+const discounts = [{ code: "DISCOUNT5", discountPercent: 5, used: false }];
 const NTH_ORDER = 5;
 
 // Auto-Seeding data when server starts
