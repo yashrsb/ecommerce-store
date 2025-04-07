@@ -4,22 +4,36 @@ const router = express.Router();
 
 // Adding item to cart
 router.post("/:userId/add", (req, res) => {
-  const { userId } = req.params;
-  const { productId, quantity } = req.body;
+  try {
+    const { userId } = req.params;
+    const { productId, quantity } = req.body;
 
-  if (!users[userId]) users[userId] = { cart: [] };
+    if (!productId || !quantity) {
+      return res.status(400).json({ message: "Product ID and quantity are required." });
+    }
 
-  const product = products.find((p) => p.id === productId);
-  if (!product) return res.status(404).json({ message: "Product not found" });
+    if (!users[userId]) users[userId] = { cart: [] };
 
-  users[userId].cart.push({ productId, quantity, price: product.price });
-  res.json({ message: "Item added to cart", cart: users[userId].cart });
+    const product = products.find((p) => p.id === productId);
+    if (!product) return res.status(404).json({ message: "Product not found" });
+
+    users[userId].cart.push({ productId, quantity, price: product.price });
+    res.json({ message: "Item added to cart", cart: users[userId].cart });
+  } catch (error) {
+    console.error("Error adding item to cart:", error);
+    res.status(500).json({ message: "Internal server error while adding to cart." });
+  }
 });
 
 // Checking cart
 router.get("/:userId", (req, res) => {
-  const { userId } = req.params;
-  res.json(users[userId]?.cart || []);
+  try {
+    const { userId } = req.params;
+    res.json(users[userId]?.cart || []);
+  } catch (error) {
+    console.error("Error fetching cart:", error);
+    res.status(500).json({ message: "Internal server error while fetching cart." });
+  }
 });
 
 module.exports = router;
