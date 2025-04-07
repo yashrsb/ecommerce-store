@@ -23,7 +23,7 @@ This project simulates a simple in-memory eCommerce backend with cart, checkout,
 ## Installation Steps
 
 ```bash
-git clone https://github.com/your-username/ecommerce-store
+git clone https://github.com/yashrsb/ecommerce-store.git
 cd ecommerce-store
 npm install
 npm run dev
