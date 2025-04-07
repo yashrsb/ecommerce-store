@@ -1,0 +1,12 @@
+# Ignore files
+.DS_Store
+
+# Ignore Node.js build artifacts
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore IDE files
+.idea/
+.vscode/
