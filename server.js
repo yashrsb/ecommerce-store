@@ -1,10 +1,14 @@
 const express = require("express");
+const cors = require("cors");
+
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 const { seedProducts } = require("./data");
 
 app.use(express.json());
+
+app.use(cors());
 
 // Routes
 app.use("/cart", require("./routes/cart"));
