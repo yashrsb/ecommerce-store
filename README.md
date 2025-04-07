@@ -27,3 +27,5 @@ git clone https://github.com/yashrsb/ecommerce-store.git
 cd ecommerce-store
 npm install
 npm run dev
+
+npm run test #To run all test cases

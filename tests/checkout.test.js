@@ -7,13 +7,14 @@ app.use(express.json());
 // Injecting routes
 const cartRoutes = require("../routes/cart");
 const checkoutRoutes = require("../routes/checkout");
-const { users, orders, discounts } = require("../data");
+const { users, orders, discounts, seedProducts } = require("../data");
 
 app.use("/cart", cartRoutes);
 app.use("/checkout", checkoutRoutes);
 
 // Reseting in-memory data before each test
 beforeEach(() => {
+  seedProducts();
   users["testUser"] = { cart: [] };
   orders.length = 0;
   discounts.length = 0;

@@ -5,11 +5,12 @@ const app = express();
 app.use(express.json());
 
 const cartRoutes = require("../routes/cart");
-const { users } = require("../data");
+const { users, seedProducts } = require("../data");
 
 app.use("/cart", cartRoutes);
 
 beforeEach(() => {
+  seedProducts();
   users["cartUser"] = { cart: [] };
 });
 
